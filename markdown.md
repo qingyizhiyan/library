@@ -3,7 +3,10 @@
 ### headline3
 #### and so on
 *italics*
+---
 **emphasize**
+---
 ***italics and emphasize***
+---
 ~~deleted~~
 ---
