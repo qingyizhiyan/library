@@ -5,3 +5,5 @@
 *italics*
 **emphasize**
 ***italics and emphasize***
+~~deleted~~
+---
