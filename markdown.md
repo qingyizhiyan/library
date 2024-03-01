@@ -12,4 +12,5 @@
 ---
 >quote
 
-    print("yes")
+    '''here you can write code'''
+    print("python")
