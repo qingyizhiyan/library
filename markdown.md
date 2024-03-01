@@ -11,3 +11,4 @@
 ~~deleted~~
 ---
 >quote
+    print("yes")
