@@ -4,10 +4,11 @@ city.append('南平')
 rate.append(5.0)
 city_rate = list(zip(city,rate))
 print(city_rate)
-print(f'厦门2023年的GDP增速（％）为：{dict(zip(city,rate))['厦门']}')
+dic_city_rate = dict(zip(city,rate))
+print(f'厦门2023年的GDP增速（％）为：{dic_city_rate['厦门']}')
 city_xzq = []
 for i in range(len(city)):
   if city[i] in ['厦门','漳州','泉州']:
     city_xzq.append((city[i],rate[i]))
 city_xzq.sort(key = lambda x:x[1])
-print(f'2023年闽南地区GDP增速从高到低的城市分别是{city_xzq[0][0]}、{city_xzq[1][0]}、{city_xzq[2][0]}’）
+print(f'2023年闽南地区GDP增速从高到低的城市分别是{city_xzq[0][0]}、{city_xzq[1][0]}、{city_xzq[2][0]}')
