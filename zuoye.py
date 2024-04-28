@@ -5,7 +5,7 @@ rate.append(5.0)
 city_rate = list(zip(city,rate))
 print(city_rate)
 dic_city_rate = dict(zip(city,rate))
-print(f'厦门2023年的GDP增速（％）为：{dic_city_rate['厦门']}')
+print('厦门2023年的GDP增速（％）为：',dic_city_rate['厦门']})
 city_xzq = []
 for i in range(len(city)):
   if city[i] in ['厦门','漳州','泉州']:
