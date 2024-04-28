@@ -12,3 +12,9 @@ for i in range(len(city)):
     city_xzq.append((city[i],rate[i]))
 city_xzq.sort(key = lambda x:x[1])
 print(f'2023年闽南地区GDP增速从高到低的城市分别是{city_xzq[0][0]}、{city_xzq[1][0]}、{city_xzq[2][0]}')
+
+dict1 = {'Elvis':84,'Nelson':78,'Helen':85}
+print(dict1['Nelson'])
+for k,y in dict1.items():
+  print(k,y)
+dict['Helen'] = 88
