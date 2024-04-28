@@ -17,4 +17,4 @@ dict1 = {'Elvis':84,'Nelson':78,'Helen':85}
 print(dict1['Nelson'])
 for k,y in dict1.items():
   print(k,y)
-dict['Helen'] = 88
+dict1['Helen'] = 88
