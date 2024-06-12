@@ -5,12 +5,14 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score
 
+
 def evaluate_model(model, feature_train, target_train, feature_test, target_test):
     model.fit(feature_train, target_train)
     y_pred = model.predict(feature_test)
     accuracy = model.score(feature_test, target_test)
     f1 = f1_score(target_test, y_pred)
     return accuracy, f1
+
 
 def main():
     t_dataframe = pandas.read_csv(r"C:\Users\apexon\Downloads\Titantic.csv", encoding='GBK')
@@ -28,6 +30,7 @@ def main():
     for model, name in zip(models, model_names):
         accuracy, f1 = evaluate_model(model, feature_train, target_train, feature_test, target_test)
         print(f"{name}:\n Accuracy={accuracy}, F1 Score={f1}")
+
 
 if __name__ == "__main__":
     main()
