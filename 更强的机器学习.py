@@ -1,25 +1,27 @@
 import pandas
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import f1_score
+from sklearn.model_selection import cross_val_score, StratifiedKFold
 
 
-def evaluate_model(model, feature_train, target_train, feature_test, target_test):
-    model.fit(feature_train, target_train)
-    y_pred = model.predict(feature_test)
-    accuracy = model.score(feature_test, target_test)
-    f1 = f1_score(target_test, y_pred)
-    return accuracy, f1
+def evaluate_model(model, target, feature):
+    cv = StratifiedKFold(n_splits=5,shuffle=True)
+    f1 = cross_val_score(model, feature,target,cv=cv,scoring='f1')
+    accuracy = cross_val_score(model,feature,target,cv=5,scoring='accuracy')
+    return accuracy.mean(), f1.mean()
+
+
+def open_file():
+    file_name = input("file name:")
+    feature_label = input("feature label:")
+    t_dataframe = pandas.read_csv(file_name ,encoding='utf-8')
+    target = t_dataframe[feature_label]
+    feature = t_dataframe.drop([feature_label],axis=1)
+    return target,feature
 
 
 def main():
-    t_dataframe = pandas.read_csv(r"C:\Users\apexon\Downloads\Titantic.csv", encoding='GBK')
-    target = t_dataframe['Survived']
-    feature = t_dataframe.drop(['Survived'], axis=1)
-    feature_train, feature_test, target_train, target_test = train_test_split(feature, target, stratify=target, random_state=999)
-
     lda_model = LinearDiscriminantAnalysis()
     tree_model = DecisionTreeClassifier(max_depth=3, random_state=888)
     forest_model = RandomForestClassifier(n_estimators=100, random_state=777)
@@ -27,9 +29,11 @@ def main():
     models = [lda_model, tree_model, forest_model]
     model_names = ['Linear Discriminant Analysis', 'Decision Tree', 'Random Forest']
 
+    target,feature = open_file()
+
     for model, name in zip(models, model_names):
-        accuracy, f1 = evaluate_model(model, feature_train, target_train, feature_test, target_test)
-        print(f"{name}:\n Accuracy={accuracy}, F1 Score={f1}")
+        accuracy, f1 = evaluate_model(model, target, feature)
+        print(f"{name}:\n Accuracy={accuracy:.3f}, F1 Score={f1:.3f}")
 
 
 if __name__ == "__main__":
